@@ -39,13 +39,13 @@ class TransactionResource extends Resource
                     ->required(),
                 TextInput::make('name')->required(),
                 TextInput::make('email')->email()->required(),
-                TextInput::make('phone')->required(),
+                TextInput::make('phone_number')->required(),
                 Select::make('payment_method')
                     ->options([
                         'down_payment' => 'Down Payment',
                         'full_payment' => 'Full Payment',
                     ]),
-                Select::make('payment_method')
+                Select::make('payment_status')
                     ->options([
                         'pending' => 'Pending',
                         'paid' => 'Paid',

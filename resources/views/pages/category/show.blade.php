@@ -18,13 +18,13 @@
             <p class="text-ngekos-grey">Tersedia {{ $category->boardingHouses->count() }}</p>
         </div>
         <button class="flex flex-col items-center text-center shrink-0 rounded-[22px] p-[10px_20px] gap-2 bg-white">
-            <img src="{{ asset('assets/images/icons/star.svg') }}" class="w-6 h-6" alt="icon">
+            <img src="{{ asset(path: 'assets/images/icons/star.svg') }}" class="w-6 h-6" alt="icon">
             <p class="text-sm font-bold">4/5</p>
         </button>
     </div>
     <section id="Result" class="relative flex flex-col gap-4 px-5 mt-5 mb-9">
         @foreach ($boardingHouses as $boardingHouse)
-            <a href="details.html" class="card">
+            <a href="{{route('kos-show' , $boardingHouse->slug)}}" class="card">
                 <div
                     class="flex rounded-[30px] border border-[#F1F2F6] p-4 gap-4 bg-white hover:border-[#91BF77] transition-all duration-300">
                     <div class="flex w-[120px] h-[183px] shrink-0 rounded-[30px] bg-[#D9D9D9] overflow-hidden">

@@ -50,7 +50,7 @@
             <div class="swiper-wrapper">
                 @foreach ($popularBoardingHouses as $boardingHouse)
                     <div class="swiper-slide !w-fit">
-                        <a href="details.html" class="card">
+                        <a href="{{route('kos-show', $boardingHouse->slug)}}" class="card">
                             <div
                                 class="flex flex-col w-[250px] shrink-0 rounded-[30px] border border-[#F1F2F6] p-4 pb-5 gap-[10px] hover:border-[#91BF77] transition-all duration-300">
                                 <div class="flex w-full h-[150px] shrink-0 rounded-[30px] bg-[#D9D9D9] overflow-hidden">
@@ -130,7 +130,7 @@
         </div>
         <div class="flex flex-col gap-4">
             @foreach ($boardingHouses as $boardingHouse)
-                <a href="details.html" class="card">
+                <a href="{{route('kos-show', $boardingHouse->slug)}}" class="card">
                     <div
                         class="flex rounded-[30px] border border-[#F1F2F6] p-4 gap-4 bg-white hover:border-[#91BF77] transition-all duration-300">
                         <div class="flex w-[120px] h-[183px] shrink-0 rounded-[30px] bg-[#D9D9D9] overflow-hidden">
@@ -154,7 +154,9 @@
                                 <p class="text-sm text-ngekos-grey">4 People</p>
                             </div>
                             <hr class="border-[#F1F2F6]">
-                            <p class="text-lg font-semibold text-ngekos-orange">Rp {{ number_format($boardingHouse->price, 0, ',', '.') }}<span
+                            <p class="text-lg font-semibold text-ngekos-orange">
+                                
+                                <span
                                     class="text-sm font-normal text-ngekos-grey">/bulan</span></p>
                         </div>
                     </div>

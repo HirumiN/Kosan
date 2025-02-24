@@ -18,4 +18,8 @@ class Room extends Model
     public function images(){
         return $this->hasMany(RoomImage::class);
     }
+
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
 }
