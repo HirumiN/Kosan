@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/check-booking', [BookingController::class, 'check'])->name('check-booking');
+Route::post('/check-booking', [BookingController::class, 'show'])->name('check-booking.show');
+
 
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category-show');
 Route::get('/city/{slug}', [CityController::class, 'show'])->name('city-show');
@@ -22,8 +25,11 @@ Route::get('/kos/{slug}/rooms', [BoardingHouseController::class, 'rooms'])->name
 Route::get('/kos/booking/{slug}', [BookingController::class, 'booking'])->name('booking');
 Route::get('/kos/booking/{slug}/information', [BookingController::class, 'information'])->name('booking-information');
 Route::post('/kos/booking/{slug}/information/save', [BookingController::class, 'save'])->name('booking-save');
+
 Route::post('/kos/booking/{slug}/payment', [BookingController::class, 'payment'])->name('booking-payment');
 Route::get('/kos/booking/{slug}/checkout', [BookingController::class, 'checkout'])->name('checkout');
+
+Route::get('/booking-success',[BookingController::class, 'succes'])->name('booking-success');
 
 Route::get('/find-result', [BoardingHouseController::class, 'findResult'])->name('find-kos.result');
 

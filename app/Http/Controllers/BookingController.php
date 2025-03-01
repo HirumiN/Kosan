@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookingShowRequest;
 use App\Http\Requests\CustomerInformationRequest;
 use App\Interface\TransactionRepositoryInterface;
 use Illuminate\Http\Request;
@@ -73,17 +74,19 @@ class BookingController extends Controller
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = config('midtrans.is_3ds');
 
-        $params = array(
+        $params = [
             'transaction_details' => [
                 'order_id' => $transaction->code,
-                'gross_amount' => intval(round($transaction->total_amount)),
+                'gross_amount' => intval($transaction->total_amount)
             ],
+
             'customer_details' => [
                 'first_name' => $transaction->name,
                 'email' => $transaction->email,
-                'phone' => $transaction->phone_number,
-            ]
-        );
+                'phone_number' => $transaction->phone_number
+            ],
+
+        ];
 
         $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
 
@@ -92,8 +95,22 @@ class BookingController extends Controller
         return redirect($paymentUrl);
     }
 
+    public function succes(Request $request){
+        $transaction = $this->transactionRepository->getTransactionByCode($request->order_id);
+
+        if(!$transaction){
+            return redirect()->route('home');
+        }
+
+        return view('pages.booking.success', compact('transaction'));
+    }
+
     public function check()
     {
-        return view('pages.booking');
+        return view('pages.booking.check-booking');
+    }
+
+    public function show(BookingShowRequest $request){
+
     }
 }
