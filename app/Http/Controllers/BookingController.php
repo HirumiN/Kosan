@@ -111,6 +111,12 @@ class BookingController extends Controller
     }
 
     public function show(BookingShowRequest $request){
+        $transaction= $this->transactionRepository->getTransactionByCodeEmailPhone($request->code, $request->email, $request->phone_number);
 
+        if(!$transaction){
+            return redirect()->back()->with('error', 'Booking not found');
+        }
+
+        return view('pages.booking.detail', compact('transaction'));
     }
 }
